@@ -1,0 +1,59 @@
+﻿@model NewsItemListModel
+@using Nop.Web;
+@using Nop.Web.Extensions;
+@using Nop.Web.Models.News;
+@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.NewsArchive").Text);
+}
+@{
+    //current category ID
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    int currentManufacturerId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.RequestContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    int currentProductId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.RequestContext.RouteData.Values["productId"].ToString());
+    }
+}
+
+  <div id="content" class="clearfix">
+    <section id="primary-content" class="clearfix" role="main">
+      <header class="clearfix">
+        <h1><span>@T("News")</span><a href="@Url.RouteUrl("NewsRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss">
+            <img title="@T("News.RSS.Hint")" src="@Url.Content("~/content/images/icon_rss.gif")" alt="@T("News.RSS")" /></a></h1>
+      </header>
+      <ul id="generic-list" class="clearfix news">
+       @foreach (var item in Model.NewsItems)
+       {
+            <li>
+              <h2>@item.Title</h2>
+              <p>@Html.Raw(item.Short)</p>
+              <a href="@Url.RouteUrl("NewsItem", new { newsItemId = item.Id, SeName = item.SeName })">Read more</a> 
+            </li>
+       }
+      <ul class="pagination clearfix">
+        @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+      </ul>
+    </section>
+    @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })  
+  </div>

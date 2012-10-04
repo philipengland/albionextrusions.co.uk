@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "";
+}
+@model ConfigurationModel
+@using Nop.Plugin.Payments.SagePayServer.Models;
+@using Nop.Web.Framework;
+@using (Html.BeginForm())
+{
+    <table class="adminContent">
+        <tr>
+            <td colspan="3">
+                <h2>Welcome to SagePay Configuration Server</h2>
+                <p>
+                    
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" width="100%">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.TransactType):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.TransactType, Model.TransactTypeList)
+            </td>
+            <td>
+                if your Sage Pay account supports these payment types, they could be: <br />
+                <strong>PAYMENT: </strong> to take the payment when a customer enters their credit card<br />
+                <strong>DEFERRED: </strong> to capture the funds, but relase it later (after shipping items)<br />
+                <strong>AUTHENTICATE: </strong> to validate the card but not take any money <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ConnectTo):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.ConnectTo, Model.ConnectToList)
+                @Html.ValidationMessageFor(model => model.ConnectTo)
+            </td>
+            <td>
+                Set to <strong>SIMULATOR</strong> for the Simulator expert system, 
+                <strong>TEST</strong> for the Test Server and <strong>LIVE</strong> in the live environment<br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.VendorName):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.VendorName)
+                @Html.ValidationMessageFor(model => model.VendorName)
+            </td>
+            <td>
+                Set this value to the Vendor Name assigned to you by Sage Pay or chosen when you applied<br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AdditionalFee):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AdditionalFee)
+                @Html.ValidationMessageFor(model => model.AdditionalFee)
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.NotificationFullyQualifiedDomainName):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NotificationFullyQualifiedDomainName)
+                @Html.ValidationMessageFor(model => model.NotificationFullyQualifiedDomainName)
+            </td>
+            <td>
+                ** IMPORTANT **. <br />
+                Set this value to the Fully Qualified Domain Name of your server. <br />
+                This should start http:// or https:// and should be the name by which our servers can call back to yours <br />
+                i.e. it MUST be resolvable externally, and have access granted to the Sage Pay servers <br />
+                examples would be https://www.mysite.com or http://212.111.32.22/ <br />
+                NOTE: You should leave the final / in place. <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ReturnFullyQualifiedDomainName):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ReturnFullyQualifiedDomainName)
+                @Html.ValidationMessageFor(model => model.ReturnFullyQualifiedDomainName)
+            </td>
+            <td>
+                ** IMPORTANT **. <br />
+               In production it is the same as the previous field. However, for development this is the internal URL such as: http://localhost:7516/<br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Profile):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.Profile, Model.ProfileList)
+                @Html.ValidationMessageFor(model => model.Profile)
+            </td>
+            <td>
+                Set to <strong>NORMAL</strong> to redirect the customer to Segapay (One page checkout does not use this mode), 
+                and <strong>LOW</strong> To use an iframe. <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.PartnerID):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PartnerID)
+                @Html.ValidationMessageFor(model => model.PartnerID)
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" width="100%">
+                <button type="submit" name="save" value="save" class="t-button">
+                    Save</button>
+            </td>
+        </tr>
+    </table>
+    
+}

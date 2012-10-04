@@ -1,0 +1,47 @@
+﻿@model ContactModel
+@using Nop.Web.Models.Common;
+@{
+    Layout = "~/Views/Shared/_SubPageLayout.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.ContactUs").Text);
+}
+ 
+
+<div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+        <header>
+          <h1><span>Contact us</span></h1>
+        </header>
+         @if (Model.SuccessfullySent)
+         {
+            <div class="result">
+                @Model.Result
+            </div>        
+         }
+         else
+         {
+
+         <div class="generic-form">
+             @using (Html.BeginForm("Contact", "Common"))
+             {
+                <fieldset>
+                    <ol>
+                    <li><label for="first-name">First name: </label>@Html.TextBoxFor(model => model.FirstName, new { @class = "text", @name = "first-name", @type = "text" })</li>@Html.ValidationMessageFor(model => model.FirstName)
+                    <li><label for="surname">Surname: </label>@Html.TextBoxFor(model => model.Surname, new { @class = "text", @name = "surname", @type = "text" })</li>@Html.ValidationMessageFor(model => model.Surname)
+                    <li><label for="email-address">Email address: </label>@Html.TextBoxFor(model => model.Email, new { @class = "text", @name = "email-address", @type = "email" })</li>@Html.ValidationMessageFor(model => model.Email)
+                    <li><label for="telephone-number">Telephone number: </label>@Html.TextBoxFor(model => model.Telephone, new { @class = "text", @name = "telephone-number", @type = "text" })</li>@Html.ValidationMessageFor(model => model.Telephone)
+                    <li><label for="order-number">Order reference: </label>@Html.TextBoxFor(model => model.OrderReference, new { @class = "text", @name = "reference", @type = "text" })</li>   @Html.ValidationMessageFor(model => model.OrderReference)             
+                    <li><label for="enquiry">Your enquiry: </label>@Html.TextAreaFor(model => model.Enquiry, new { @class = "text", @name = "enquiry" })</li>                
+                    <li><input type="submit" class="btn-alt" value="Send enquiry"/></li>
+                    </ol>
+                </fieldset>
+             }
+         </div>
+             
+         }
+
+
+        
+      </section>
+    </div>

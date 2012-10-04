@@ -1,0 +1,207 @@
+﻿@model SearchModel
+@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Search").Text);
+}
+@{
+    //current category ID
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+    //current manufacturer ID
+    int currentManufacturerId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.RequestContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    int currentProductId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.RequestContext.RouteData.Values["productId"].ToString());
+    }
+}
+@using Nop.Core;
+@using Nop.Core.Infrastructure;
+@using Nop.Web;
+@using Nop.Web.Models.Catalog;
+@using Nop.Web.Extensions;
+ <div id="content" class="clearfix">
+  <section id="primary-content" class="clearfix" role="main">
+      <header class="clearfix">
+                <h1><span>@T("Search")</span></h1>
+              </header>
+
+           @using (Html.BeginRouteForm("ProductSearch", FormMethod.Get))
+           {
+               <script type="text/javascript">
+                   $(document).ready(function () {
+
+                       $("#@Html.FieldIdFor(model => model.As)").click(toggleAdvancedSearch);
+
+                       toggleAdvancedSearch();
+                   });
+
+                   function toggleAdvancedSearch() {
+
+                       if ($('#@Html.FieldIdFor(model => model.As)').is(':checked')) {
+                           $('#advanced-search-block').show();
+                       }
+                       else {
+                           $('#advanced-search-block').hide();
+                       }
+                   }
+
+                </script>
+               
+               <div class="search-input">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+
+                        $("#@Html.FieldIdFor(model => model.As)").click(toggleAdvancedSearch);
+
+                        toggleAdvancedSearch();
+                    });
+
+                    function toggleAdvancedSearch() {
+
+                        if ($('#@Html.FieldIdFor(model => model.As)').is(':checked')) {
+                            $('#advanced-search-block').show();
+                        }
+                        else {
+                            $('#advanced-search-block').hide();
+                        }
+                    }
+
+                </script>
+                <table class="basic-search">
+                    <tbody>
+                        <tr>
+                            <td class="title">
+                                @Html.LabelFor(model => model.Q):
+                            </td>
+                            <td class="data">
+                                @Html.TextBoxFor(model => model.Q, new { @class = "search-text" })
+                            </td>
+                        </tr>
+                        @Html.Widget("productsearch_page_basic")
+                        <tr>
+                            <td class="title" colspan="2">
+                                @Html.CheckBoxFor(model => model.As)
+                                @Html.LabelFor(model => model.As)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="adv-search" id="advanced-search-block">
+                                    <tbody>
+                                        @if (Model.AvailableCategories.Count > 0)
+                                        {
+                                            <tr>
+                                                <td class="title">
+                                                    @Html.LabelFor(model => model.Cid):
+                                                </td>
+                                                <td class="data">
+                                                    @Html.DropDownListFor(model => model.Cid, Model.AvailableCategories)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="data" colspan="2">
+                                                    @Html.CheckBoxFor(model => model.Isc)
+                                                    @Html.LabelFor(model => model.Isc)
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (Model.AvailableManufacturers.Count > 0)
+                                        {
+                                            <tr>
+                                                <td class="title">
+                                                    @Html.LabelFor(model => model.Mid):
+                                                </td>
+                                                <td class="data">
+                                                    @Html.DropDownListFor(model => model.Mid, Model.AvailableManufacturers)
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td class="title">
+                                                @T("Search.PriceRange"):
+                                            </td>
+                                            <td class="data">
+                                                @T("Search.PriceRange.From")
+                                                @Html.TextBoxFor(model => model.Pf, new { @class = "price-from" })
+                                                @T("Search.PriceRange.To")
+                                                @Html.TextBoxFor(model => model.Pt, new { @class = "price-to" })
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="data" colspan="2">
+                                                @Html.CheckBoxFor(model => model.Sid)
+                                                @Html.LabelFor(model => model.Sid)
+                                            </td>
+                                        </tr>
+                                        @Html.Widget("productsearch_page_advanced")
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="buttons">
+                                <input type="submit" class="button-1 search-button" value="@T("Search")" />
+                            </td>
+                        </tr>
+                        @if (!String.IsNullOrEmpty(Model.Warning))
+                        {
+                            <tr>
+                                <td colspan="2">
+                                    <span class="warning">
+                                        @Model.Warning
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+             if (Model.NoResults)
+             {
+                    <span class="result">
+                        @T("Search.NoResultsText")
+                    </span>
+             }
+             else
+             {
+                        @*product list*@
+                if (Model.Products.Count > 0)
+                {
+                    foreach (var product in Model.Products)
+                    {
+                            @Html.Partial("_ProductBox", product)
+                    }
+                }
+             }
+                <div class="clear">
+                </div>
+                  <ul class="pagination clearfix">
+            @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber").BooleanParameterName("as").BooleanParameterName("isc").BooleanParameterName("sid")
+          </ul>
+           }
+
+        @Html.Widget("categorydetails_bottom")
+        
+</section>
+     
+        @Html.Action("MiniShoppingCart", "ShoppingCart")
+        @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+
+</div>

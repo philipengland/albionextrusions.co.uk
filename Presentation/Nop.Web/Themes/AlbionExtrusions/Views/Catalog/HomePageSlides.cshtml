@@ -1,0 +1,62 @@
+﻿    @model HomePageSlidesModel
+    @using Nop.Web.Models.Catalog;
+
+           <script>
+               $(function () {
+                   $('#slides').slides({
+                       preload: true,
+                       preloadImage: '_includes/images/jquery/loading.gif',
+                       play: 4000,
+                       pause: 2500,
+                       slideSpeed: 600,
+                       crossfade: true,
+                       pagination: false,
+                       generatePagination: false,
+                       hoverPause: true,
+                       animationStart: function (current) {
+                           $('.caption').animate({
+                               bottom: 0
+                           }, 800);
+                           if (window.console && console.log) {
+                               // example return of current slide number
+                               console.log('animationStart on slide: ', current);
+                           };
+                       },
+                       animationComplete: function (current) {
+                           $('.caption').animate({
+                               bottom: 0
+                           }, 1000);
+                           if (window.console && console.log) {
+                               // example return of current slide number
+                               console.log('animationComplete on slide: ', current);
+                           };
+                       },
+                       slidesLoaded: function () {
+                           $('.caption').animate({
+                               bottom: 0
+                           }, 700);
+                       }
+                   });
+               });
+	</script>
+   
+
+    @if (Model.Products.Count > 0)
+    {  
+        <div id="banner">
+        	<div id="slides">
+				<div class="slides_container">
+                    @foreach (ProductSlideModel item in Model.Products)
+                    {
+                        <div class="slide">
+						    <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.CategorySeName })" class="shadow"><img src="@item.DefaultPictureModel.ImageUrl" width="710" height="319" alt="@item.DefaultPictureModel.Title"/></a>
+						    <div class="caption">
+							    <p>test</p>
+                                <footer><a class="btn-alt" href="@Url.RouteUrl("Category", new { categoryId = item.CategoryID, SeName = item.CategorySeName })">Order yours today!</a></footer>
+						    </div>
+                        </div>
+                    }
+				</div>
+			</div>
+		</div>
+    }

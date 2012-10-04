@@ -1,0 +1,47 @@
+﻿@model IList<CategoryNavigationModel>
+@using Nop.Core.Domain.Catalog;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Catalog;
+@using Nop.Web.Models.Catalog;
+@{
+    var categoryPadding = 15;
+}
+@if (Model.Count > 0)
+{
+     <aside id="product-navigation" class="clearfix">
+        <h1>Our Products</h1>
+        <nav id="secondary-navigation" role="navigation">
+            <ul> 
+                @foreach (var category in Model)
+                {
+                    <li class="@(category.IsActive ? "active" : "inactive")" 
+                    @if (category.NumberOfParentCategories > 0)
+                    {
+                        if (this.ShouldUseRtlTheme())
+                        {
+                        <text>style="margin-right: @(category.NumberOfParentCategories * categoryPadding)px"</text>
+                        }
+                        else
+                        {
+                        <text>style="margin-left: @(category.NumberOfParentCategories * categoryPadding)px"</text>
+                        }
+                    }
+                    ><a href="@Url.RouteUrl("Category", new { categoryId = category.Id, SeName = category.SeName })">@category.Name
+                        @if (category.DisplayNumberOfProducts)
+                        {
+                            <text> (@(category.NumberOfProducts))</text>
+                        }
+                    </a></li>
+                }
+                </ul>
+            </nav>
+         <dl>
+          <dd> <img src="@Url.Content("~/Themes/AlbionExtrusions/Content/images/global/trade-price.png")" alt="Download Trade Price List" /><a href="#" class="btn">Download</a></dd>
+          <dd> <img src="@Url.Content("~/Themes/AlbionExtrusions/Content/images/global/free-delivery.png")" alt="Free delivery on orders over £150!" /> </dd>
+          <dd> <img src="@Url.Content("~/Themes/AlbionExtrusions/Content/images/global/sage.png")" alt="Shop safe with Sage Pay" /> </dd>
+        </dl>
+      </aside>
+}
+      
+
+

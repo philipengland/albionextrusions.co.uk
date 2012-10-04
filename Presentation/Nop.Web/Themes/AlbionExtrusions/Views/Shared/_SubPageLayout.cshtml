@@ -1,0 +1,20 @@
+﻿@Html.Partial("Includes")
+<!DOCTYPE html>
+<html class="no-js">
+ @Html.Partial("Head")
+<body class="sub-page">
+<div id="container">
+@Html.Partial("_Notifications")
+@Html.Action("EuCookieLaw", "Common")
+    <div class="wrapper">
+    <header class="clearfix">
+      @Html.Partial("Header")
+    </header>
+
+    @RenderBody()
+
+    </div>
+   </div>
+     @Html.Partial("Footer")
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Payments.SagePayServer.Models.PaymentSagePayServerModel
+@using Nop.Web.Framework;
+
+@if (Model.Warnings.Count > 0)
+{ 
+    <p>Unfortunately, there were errors while processing your payment. </p>
+    <p>
+        The error produced by the payment gateway was:
+    </p>
+    <ul>
+    @foreach (string w in Model.Warnings)
+    {
+        <li>@w</li>     
+    }   
+    </ul>
+    <div>
+        <a class="paymentmethodnextstepbutton" href="@Url.RouteUrl("CheckoutPaymentMethod")">Try Again</a>
+    </div>
+}
+@if (!String.IsNullOrEmpty(@Model.FrameURL))
+{
+    <iframe src="@Model.FrameURL" style="width:100%; height:500px;" frameborder="0"></iframe>
+    <iframe src="@Url.RouteUrl("Plugin.Payments.SagePayServer.PaymentInfoScripts")" style="width:0; height:0;" frameborder="0"></iframe>
+}
+

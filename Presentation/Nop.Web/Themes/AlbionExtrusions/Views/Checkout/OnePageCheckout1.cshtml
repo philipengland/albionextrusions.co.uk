@@ -1,0 +1,63 @@
+﻿@model OnePageCheckoutModel
+@using Nop.Web.Models.Checkout;
+@using Nop.Core.Infrastructure.DependencyManagement;
+@using Nop.Core.Infrastructure;
+@{
+    Layout = "~/Views/Shared/_SubPageLayout.cshtml";
+
+    Html.AddScriptParts(@Url.Content("~/Scripts/public.accordion.js"));
+    Html.AddScriptParts(@Url.Content("~/Scripts/public.onepagecheckout.js"));
+
+    var storeLocation = EngineContext.Current.Resolve<Nop.Core.IWebHelper>().GetStoreLocation();
+}
+ <div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+        <header>
+          <h1><span>Your Details</span></h1>
+        </header>
+        @using (Html.BeginForm("CompleteCheckout", "Checkout", FormMethod.Post))
+          {  
+        <div class="generic-form" id="checkout-steps">
+          <h2 class="sub">Step 1 - Personal details</h2>
+          
+          <fieldset>
+              <ol>
+                <li><label for="first-name">First name: </label><input id="first-name" name="first-name" type="text" class="text"/></li>
+                <li><label for="surname">Surname: </label><input id="surname" name="surname" type="text" class="text"/></li>
+                <li><label for="email-address">Email address: </label><input id="email-address" name="email-address" type="email" class="text"/></li>
+                <li><label for="telephone-number">Telephone number: </label><input id="telephone-number" name="telephone-number" type="text" class="text" /></li>
+              </ol>
+            </fieldset>
+          <h2 class="sub">Step 2 - Delivery address</h2>
+            <fieldset>
+              <ol>
+                <li><label for="house-number">House name/number: </label><input id="house-number" name="house-number" type="text" class="text"/></li>
+                <li><label for="street">Street: </label><input id="street" name="street" type="text" class="text"/></li>
+                <li><label for="town-city">Town/City: </label><input id="town-city" name="town-city" type="text" class="text"/ ></li>
+                <li><label for="county">County: </label><input id="county" name="county" type="text" class="text"/></li>
+                <li><label for="postcode">Postcode: </label><input id="postcode" name="postcode" type="text" class="text"/></li>
+              </ol>
+            </fieldset>
+          <h2 class="sub">Step 3 - Billing address (if different)</h2>
+            <fieldset>
+              <ol>
+                <li><label for="first-name">First name: </label><input id="first-name" name="first-name" type="text" class="text"/></li>
+                <li><label for="surname">Surname: </label><input id="surname" name="surname" type="text" class="text" /></li>
+                <li><label for="ba-house-number">House name/number: </label><input id="ba-house-number" name="house-number" type="text" class="text" /></li>
+                <li><label for="ba-street">Street: </label><input id="ba-street" name="street" type="text" class="text" /></li>
+                <li><label for="ba-town-city">Town/City: </label><input id="ba-town-city" name="town-city" type="text" class="text" /></li>
+                <li><label for="ba-county">County: </label><input id="ba-county" name="county" type="text" class="text" /></li>
+                <li><label for="ba-postcode">Postcode: </label><input id="ba-postcode" name="postcode" type="text" class="text"/></li>
+              </ol>
+            </fieldset>
+          
+      
+        </div>
+           <ul id="basket-navigation">
+          <li><a href="#" class="btn continue"><span>X</span> Cancel order</a></li>
+          <li>
+            <input type="submit" class="btn-alt checkout" value="Confirm order">
+          </li>
+        </ul>
+          }
+      </section>

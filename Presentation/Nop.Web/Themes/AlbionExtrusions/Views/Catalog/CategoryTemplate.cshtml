@@ -1,0 +1,160 @@
+﻿@model CategoryModel
+@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("Category", new { categoryId = Model.Id, SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+}
+@{
+    //current category ID
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    int currentManufacturerId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.RequestContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    int currentProductId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.RequestContext.RouteData.Values["productId"].ToString());
+    }
+}
+@using Nop.Core;
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Infrastructure;
+@using Nop.Web;
+@using Nop.Web.Models.Catalog;
+@using Nop.Web.Extensions;
+@using JG1Ltd.Common.Mvc.Helpers
+@*category breadcrumb*@
+@if (Model.DisplayCategoryBreadcrumb)
+{
+    <!--
+    <div class="breadcrumb">
+        <ul>
+            <li><a href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                <span class="delimiter">/</span> </li>
+            @for (int i = 0; i < Model.CategoryBreadcrumb.Count; i++)
+            {
+                var cat = Model.CategoryBreadcrumb[i];
+                var isLastCategory = cat.Id == Model.Id;
+                <li>
+                    @if (isLastCategory)
+                    {
+                        @*uncomment to disable clickable link
+                        <strong>@cat.Name</strong>*@
+                        <strong><a href="@Url.RouteUrl("Category", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></strong>
+                    }
+                    else
+                    {
+                        <a href="@Url.RouteUrl("Category", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a>
+                        <span class="delimiter">/</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="clear">
+    </div>
+    @Html.Widget("categorydetails_after_breadcrumb")
+    -->
+}
+ <div id="content" class="clearfix">
+  <section id="primary-content" class="clearfix" role="main">
+      <header class="clearfix">
+                <h1><span>@Model.Name</span></h1>
+              </header>
+   
+        @Html.Widget("categorydetails_top")
+        @*description*@
+        @if (!String.IsNullOrWhiteSpace(Model.Description))
+        {
+              <p class="description">@Html.Raw(Html.StripPTags(Model.Description))</p>      
+        }
+        
+          <ul class="pagination clearfix">
+            @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+          </ul>
+
+         
+        @Html.Widget("categorydetails_after_featured_products")
+        @*sorting*@
+        
+            <div class="product-sorting">
+                <span>@T("Categories.OrderBy")</span>
+                @Html.DropDownList("products-orderby", Model.PagingFilteringContext.AvailableSortOptions, new { onchange = "setLocation(this.value);" })
+            </div>
+        
+        @*page size*@
+        
+            <div class="product-page-size">
+                <span>@T("Categories.PageSize")</span> <span>@Html.DropDownList("products-pagesize", Model.PagingFilteringContext.PageSizeOptions, new { onchange = "setLocation(this.value);" })</span>
+                <span>@T("Categories.PageSize.PerPage")</span>
+            </div>
+        
+        <div class="clear">
+        </div>
+   
+        
+     
+
+        @Html.Widget("categorydetails_before_subcategories")
+        @*subcategories*@
+        @if (Model.SubCategories.Count > 0)
+        {
+            <ul id="generic-list" class="clearfix">
+                @foreach (CategoryModel.SubCategoryModel item in Model.SubCategories)
+                {
+                     <li>
+                        <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title" class="no-bg"><img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" height="80" width="80" /></a>
+                        <h2>@item.Name</h2>
+                        <p>@item. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. </p>
+                        <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title">View product range</a>
+                     </li> 
+                }
+            </ul>
+        }
+        
+        @Html.Widget("categorydetails_before_product_list")
+        @*product list*@
+        @if (Model.Products.Count > 0)
+        {
+                foreach (var product in Model.Products)
+                {
+                    @Html.Partial("_ProductBox", product)
+                }
+        }
+        <div class="clear">
+        </div>
+          <ul class="pagination clearfix">
+            @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+          </ul>
+
+        @Html.Widget("categorydetails_bottom")
+        
+</section>
+     
+        @Html.Action("MiniShoppingCart", "ShoppingCart")
+        @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+
+</div>

@@ -1,0 +1,102 @@
+﻿@model Nop.Plugin.Payments.SagePayServer.Models.PaymentSagePayServerModel
+@using Nop.Core.Domain.Orders
+@using Nop.Web.Models.Checkout
+@using Nop.Web.Models.Common
+@using Nop.Web.Framework.UI
+@{
+    if (ViewBag.Iframe == true)
+    {
+        Layout = "~/Views/Shared/_RootPopup.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    }
+}
+<div class="confirm-order">
+    @if (Model.Warnings.Count > 0)
+    {
+        <div class="clear">
+        </div>
+        <div class="error-block">
+            <div class="message-error">
+                @for (int i = 0; i < Model.Warnings.Count; i++)
+                {
+                    @Model.Warnings[i]
+
+                    if (i != Model.Warnings.Count - 1)
+                    {
+                    <br />
+                    }
+                }
+            </div>
+            <form action="@Url.RouteUrl("CheckoutPaymentMethod")" method="get" target="_parent">
+            <p>
+                Go back to the <a target="_parent" href="@Url.RouteUrl("CheckoutPaymentMethod")">Payment
+                    Page</a> to try again. If you continue to have problems please contact us and
+                we will be able to assist you.
+            </p>
+            <div class="select-button">
+                <input type="submit" class="paymentinfonextstepbutton" value="@T("Admin.Configuration.Payment.Methods.BackToList")" />
+            </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        
+        <form id="PaymentInfoForm" action="@Url.RouteUrl("CheckoutPaymentInfo")" method="post" target="_parent">
+        <p>
+            Your order is being processed...</p>
+        <p class="lbLoading" style="background-repeat: no-repeat; min-height: 40px;">
+            Please wait while you are redirected to the completion page.</p>
+
+            <input type="hidden" id="transactionId" name="transactionId" value="@Model.TransactionId"/>
+            <input type="hidden" name="nextstep" id="nextstep" value="this form value is required" />
+        </form>
+        
+        if (ViewBag.UseOnePageCheckout)
+        {
+            var storeLocation = Nop.Core.Infrastructure.EngineContext.Current.Resolve<Nop.Core.IWebHelper>().GetStoreLocation();
+            
+            <a id="processnextstep" href="#" style="display:none">Processs Next Step</a>
+        
+            <script type="text/javascript">
+                $('#processnextstep').click(function (e) {
+                    e.preventDefault();
+
+                    processNextStep();
+                });
+
+                processNextStep(); //By Default On load
+
+                function processNextStep() {
+                    var Checkout = window.parent.Checkout;
+                    var PaymentInfo = window.parent.PaymentInfo;
+
+                    PaymentInfo.save = function () { //Extending PaymentInfo Class
+                        if (Checkout.loadWaiting != false) return;
+
+                        Checkout.setLoadWaiting('payment-info');
+                        $.ajax({
+                            url: '@(storeLocation)checkout/OpcSavePaymentInfo/',
+                            data: $('#PaymentInfoForm').serialize(),
+                            type: 'post',
+                            success: PaymentInfo.nextStep,
+                            complete: PaymentInfo.resetLoadWaiting,
+                            error: Checkout.ajaxFailure
+                        });
+                    }
+
+                    PaymentInfo.save();
+                }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+                $('#PaymentInfoForm').submit();
+            </script>
+        }
+    }
+</div>

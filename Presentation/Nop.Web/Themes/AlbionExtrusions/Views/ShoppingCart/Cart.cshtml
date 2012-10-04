@@ -1,0 +1,33 @@
+﻿@model ShoppingCartModel
+@using Nop.Core.Domain.Orders
+@using Nop.Web.Models.Checkout
+@using Nop.Web.Models.ShoppingCart;
+@{
+    Layout = "~/Views/Shared/_SubPageLayout.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.ShoppingCart").Text);
+}
+
+   <div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+        <header>
+          <h1><span>Your Basket</span></h1>
+        </header>
+        <div class="generic-form" id="your-basket">
+            @Html.Partial("OrderSummary", Model)
+        </div>
+        @using (Html.BeginRouteForm("ShoppingCart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <ul id="basket-navigation">
+          <li><a href="#" class="btn continue">Continue shopping</a></li>
+          <li>
+            <input type="submit" name="startcheckout" value="Secure checkout" id="startcheckout" class="btn-alt checkout" />
+          </li>
+        </ul>
+        }
+         
+      </section>
+    </div>
+
+ 

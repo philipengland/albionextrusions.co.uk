@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Themes/AlbionExtrusions/Views/Shared/_HomeSiteLayout.cshtml";
+}
+@{
+    //current category ID
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    int currentManufacturerId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.RequestContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    int currentProductId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.RequestContext.RouteData.Values["productId"].ToString());
+    }
+}
+
+  
+
+    <div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+
+       @Html.Action("HomePageSlides", "Catalog")
+
+        @Html.Action("SomethingSpecific", "Catalog", new { count = 6 })
+
+        @Html.Action("HomepageFeaturedCategories", "Catalog", new { count = 3 })
+
+      </section>
+
+      @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+
+      <section id="secondary-content" class="clearfix">
+
+          @Html.Action("HomePageNews", "News")
+      
+          @Html.Action("TopicBlock", "Topic", new { systemName = "AboutUs" })
+
+       </section>
+    </div>
+

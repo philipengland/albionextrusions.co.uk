@@ -1,0 +1,23 @@
+/* -----------------------------------------------
+IE8 AND BELOW SPECIFIC STYLES
+URL: http://www.jg1design.co.uk
+Created by JG1 Limited
+
+----------------------------------------------- */
+
+/* -----------------------------------------------
+1. IE8 GENERIC STYLES/FIXES
+----------------------------------------------- */
+
+#container input[type='submit'], #container input[type='button']{ padding: 0 }
+a abbr, a acronym { text-decoration: underline }
+.clearfix { display: inline-block }
+
+/* -----------------------------------------------
+2. IE8 LAYOUT
+----------------------------------------------- */
+
+
+/* -----------------------------------------------
+3. IE8 GLOBAL ELEMENTS AND CONTROLS
+----------------------------------------------- */

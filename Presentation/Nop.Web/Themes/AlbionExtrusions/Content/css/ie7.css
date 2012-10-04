@@ -1,0 +1,30 @@
+/* -----------------------------------------------
+IE7 AND BELOW SPECIFIC STYLES
+URL: http://www.jg1design.co.uk
+Created by JG1 Limited
+----------------------------------------------- */
+
+/* -----------------------------------------------
+1. IE7 GENERIC STYLES/FIXES
+----------------------------------------------- */
+
+#container input[type='submit'], #container input[type='button']{ padding: 0 }
+a abbr, a acronym { text-decoration: underline }
+
+/* -----------------------------------------------
+2. IE7 LAYOUT
+----------------------------------------------- */
+footer {margin:15px 0 0 0}
+.caption footer {bottom:15px}
+.footer-r {width:23% !important; height:150px}
+
+ul#news li { width:45%;}
+h1 span {padding-right:15px !important}
+ul#generic-list li {padding-bottom:10px}
+#your-basket input.text { width:30px; height:33px; line-height:30px}
+#your-basket table th:nth-of-type(1) { width:50%}
+.btn-alt.basket {height:33px !important; top:0px !important}
+.btn-alt.checkout {height:33px !important}
+/* -----------------------------------------------
+3. IE7 GLOBAL ELEMENTS AND CONTROLS
+----------------------------------------------- */

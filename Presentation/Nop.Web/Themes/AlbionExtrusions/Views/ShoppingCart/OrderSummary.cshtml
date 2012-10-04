@@ -1,0 +1,35 @@
+﻿@model ShoppingCartModel
+@using Nop.Core.Domain.Orders;
+@using Nop.Web.Models.ShoppingCart;
+
+         @using (Html.BeginRouteForm("ShoppingCart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+         {
+            <fieldset>
+              <table>
+                <tr>
+                  <th scope="col">@T("ShoppingCart.Product(s)")</th>
+                  <th scope="col">@T("ShoppingCart.Quantity")</th>
+                  <th scope="col">@T("ShoppingCart.UnitPrice")</th>
+                  <th scope="col">@T("ShoppingCart.ItemTotal")</th>
+                </tr>
+                
+                 @foreach (var item in Model.Items)
+                 {
+                     <tr>
+                      <td><img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title" />
+                        <h2>@item.ProductName</h2>
+                        <p>@Html.Raw(item.AttributeInfo)</p></td>
+                      <td><fieldset>
+                          <input name="itemquantity@(item.Id)" type="text" value="@(item.Quantity)" class="text" />
+                          <input name="updatecart" type="submit" value="Update" class="btn-alt basket"/>
+                        </fieldset></td>
+                      <td><span>@item.UnitPrice</span></td>
+                      <td><span class="single-total">@item.SubTotal</span></td>
+                      </tr>
+                 }
+                @Html.Action("OrderTotals", "ShoppingCart", new { isEditable = Model.IsEditable })
+               
+              </table>
+            </fieldset>
+         }
+

@@ -1,0 +1,12 @@
+﻿@model MiniShoppingCartModel
+@using Nop.Web.Models.ShoppingCart;
+@if (Model.TotalProducts > 0)
+{
+  <aside id="quick-basket" class="clearfix">
+          <header class="clearfix">
+            <h1>Your Basket</h1>
+          </header>
+          <p><a href="@Url.RouteUrl("ShoppingCart")">@Model.TotalProducts items</a><span class="total">£@Model.SubTotal</span></p>
+          <a href="@Url.RouteUrl("ShoppingCart")" class="btn-alt center">Checkout now</a>
+      </aside>
+}

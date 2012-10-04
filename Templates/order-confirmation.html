@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<title>Albion Extrusions</title>
+<meta name="description" content="">
+<meta name="author" content="JG1 Ltd">
+<link href="favicon.ico" rel="Shortcut Icon" type="image/x-icon">
+<link href="_includes/css/master.css" rel="stylesheet">
+<script type="text/javascript" src="http://use.typekit.com/omm8ylt.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript" src="_includes/js/jquery-1.6.min.js"></script>
+<!--[if IE 7]>
+    <link href="_includes/css/ie7.css" rel="stylesheet">
+    <script type="text/javascript" src="_includes/js/modernizr-1.5.min"></script>
+    <![endif]-->
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!--[if lte IE 8]>
+    <script src="_includes/js/selectivizr.js"></script>
+    <![endif]-->
+</head>
+<body class="sub-page">
+<div id="container">
+  <div class="wrapper">
+    <header class="clearfix">
+      <div id="branding"><a href="index.html"><img src="_includes/images/global/branding.png" alt="Albion, Just Plas logo" /></a></div>
+      <div id="header-cta">
+        <p><span>Call us now!</span> 01204 385803</p>
+      </div>
+      <nav id="primary-navigation" role="navigation">
+        <ul>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="trade.html">Trade Customers</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="special-offers.html">Special Offers</a></li>
+        </ul>
+      </nav>
+      <div id="search-wrapper">      <form>
+        <input type="text" class="searchbox" name="s" placeholder="search...">
+        <input type="image" src="_includes/images/buttons/search/search.png" alt="search" class="searchbox_submit">
+      </form>
+      </div>
+    </header>
+    <div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+        <header>
+          <h1><span>Order confirmation</span></h1>
+        </header>
+        <div class="generic-form" id="confirmation">
+          <section class="order-confirm">
+            <h2 class="sub">Delivery and billing address</h2>
+            <table id="address">
+              <tr>
+                <th class="address">Delivery address</th>
+                <th class="address">Billing address</th>
+              </tr>
+              <tr>
+                <td><ul>
+                    <li>Chris Byrne</li>
+                    <li>5, Borron House, Borron Road, Merseyside</li>
+                    <li>WA12 0EL</li>
+                    <li><a href="#">Edit details</a></li>
+                  </ul></td>
+                <td><ul>
+                    <li>Chris Byrne</li>
+                    <li>5, Borron House, Borron Road, Merseyside</li>
+                    <li>WA12 0EL</li>
+                    <li><a href="#">Edit details</a></li>
+                  </ul></td>
+              </tr>
+            </table>
+          </section>
+           <section class="order-confirm">	
+            <h2 class="sub">Shipping method</h2>
+			<form id="delivery-method">
+            	<fieldset>
+                <ol>
+                	<li><input type="radio" name="delivery-method-1" value="3.50">Delivery method here <span>(Estimated time here)</span>  -  <span class="price">£3.50</span></li>
+                    <li><input type="radio" name="delivery-method-2" value="5.00">Delivery method here <span>(Estimated time here)</span>  -  <span class="price">£5.00</span></li>
+                    <li class="disabled" ><input type="radio" name="free-delivery" value="Free Delvery" disabled>Unfortunately, your order hasn’t qualified for free delivery*</li>
+ 				</ol>
+                </fieldset>                   
+			</form>
+          </section>
+           <section class="order-confirm">	
+            <h2 class="sub">Order summary</h2>
+            <div class="generic-form" id="order-summary">
+              <form>
+                <fieldset>
+                  <table>
+                    <tr>
+                      <th scope="col">Item</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                    <tr>
+                      <td><h2>EXT32 - Board F Section</h2></td>
+                      <td><span>20</span></td>
+                      <td><span>£0.37</span></td>
+                      <td><span class="single-total">£7.20</span></td>
+                    </tr>
+                    <tr class="alt">
+                      <td><h2>EXT33 - Glass F Section</h2></td>
+                      <td><span>20</span></td>
+                      <td><span>£0.37</span></td>
+                      <td><span class="single-total">£7.20</span></td>
+                    </tr>
+                    <tr class="totals">
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td><span class="total-title">Sub total:</span></td>
+                      <td><span class="total">£14.40</span></td>
+                    </tr>
+                    <tr class="totals">
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td><span class="total-title">Delivery cost:</span></td>
+                      <td><span class="total">£3.50</span></td>
+                    </tr>
+                    <tr class="totals">
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td><span class="grand-total-title">Total:</span></td>
+                      <td><span class="grand-total">£17.90</span></td>
+                    </tr>
+                  </table>
+                </fieldset>
+              </form>
+              </div>
+          </section>
+        </div>
+        <ul id="basket-navigation">
+          <li><a href="#" class="btn continue"><span>X</span> Cancel order</a></li>
+          <li>
+            <input type="submit" class="btn-alt checkout" value="Make payment">
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+<footer class="clearfix">
+  <div class="wrapper">
+    <div class="footer-l">
+      <nav id="footer-navigation" role="navigation">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Products</a></li>
+          <li><a href="">Trade Customers</a></li>
+          <li><a href="">News</a></li>
+          <li><a href="">FAQ</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">Special Offers</a></li>
+          <li><a href="">Delivery Policy</a></li>
+          <li><a href="">Privacy Policy</a></li>
+          <li><a href="">Terms and Conditions</a></li>
+        </ul>
+      </nav>
+      <div id="payment-methods">
+        <p>We accept the following payment methods:</p>
+        <img src="_includes/images/global/cards.png" alt="credit/debit cards"/> </div>
+    </div>
+    <div class="footer-r">
+      <p>Albion Extrusions Limited<br>
+        Penrose Street, Bolton, BL2 6DX<br>
+      </p>
+      <p>Telephone: 01204 385803<br>
+        Fax: 01204 385816<br>
+        <a href="mailto:info@albionextrusions.co.uk">Email: info@albionextrusions.co.uk</a></p>
+      <p id="site-credit"><a href="http://www.jg1ltd.com">Made with <span>JG1</span> goodness</a></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

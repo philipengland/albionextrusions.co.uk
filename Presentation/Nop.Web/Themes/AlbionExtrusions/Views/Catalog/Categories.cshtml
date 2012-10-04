@@ -1,0 +1,53 @@
+﻿@model IList<CategoryModel>
+@using Nop.Core.Domain.Catalog;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Catalog;
+@using Nop.Web.Models.Catalog;
+@{
+    Layout = "~/Themes/AlbionExtrusions/Views/Shared/_SiteLayout.cshtml";
+}
+@{
+    //current category ID
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    int currentManufacturerId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.RequestContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    int currentProductId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.RequestContext.RouteData.Values["productId"].ToString());
+    }
+}
+ <div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+          <h1><span>Featured Categories</span></h1>
+          <ul id="categories" class="clearfix">
+          @foreach (var category in Model)
+          {
+            <li class="drop-shadow curved curved-hz-1">
+              <h2>@category.Name</h2>
+              <img src="@category.PictureModel.ImageUrl" alt="@category.PictureModel.AlternateText" title="@category.PictureModel.Title" height="238" width="199"><a href="@Url.RouteUrl("Category", new { categoryId = category.Id, SeName = category.SeName })" class="btn">See the full range</a>
+            </li>
+          }
+          </ul>
+      </section>
+    @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })    
+  </div>
+</div>
+
+

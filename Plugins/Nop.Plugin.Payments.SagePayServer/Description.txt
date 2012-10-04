@@ -1,0 +1,8 @@
+﻿Group: Payment methods
+FriendlyName: Credit Card
+SystemName: Payments.SagePayServer
+Version: 1.00
+SupportedVersions: 2.20, 2.30, 2.40, 2.65
+Author: Appnova 
+DisplayOrder: 1
+FileName: Nop.Plugin.Payments.SagePayServer.dll

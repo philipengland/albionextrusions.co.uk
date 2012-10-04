@@ -1,0 +1,20 @@
+﻿@model IList<SomethingSpecificModel>
+@using JG1Ltd.Common.Mvc.Helpers
+@using Nop.Web.Models.Catalog;
+@if (Model.Count > 0)
+{
+     <div id="category-select">
+     <h1><span>Looking for something specific?</span></h1>
+          <ul class="clearfix">
+            
+            @foreach (SomethingSpecificModel item in Model)
+            {
+                <li>
+                    <h2>@item.CategoryName</h2>
+                    @Html.DropDownList(item.CategoryName, new SelectList(item.Products, "ProductUrl", "ProductName"), new { @onChange = "location.href = this.value" })
+                </li>
+            }
+            
+           </ul>
+        </div>
+}

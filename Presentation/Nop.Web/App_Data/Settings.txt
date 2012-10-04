@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=PHIL-LAPTOP;Initial Catalog=AlbionExtrusions;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=password;MultipleActiveResultSets=True

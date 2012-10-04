@@ -1,0 +1,23 @@
+﻿@using Nop.Core;
+@using Nop.Core.Infrastructure;
+@using Nop.Core.Infrastructure.DependencyManagement;
+@{
+    var displayMiniProfiler = EngineContext.Current.Resolve<Nop.Core.Domain.StoreInformationSettings>().DisplayMiniProfilerInPublicStore;
+}
+<!DOCTYPE html>
+<html class="no-js">
+@Html.Partial("Head")
+<body class="main">
+<div id="container">
+@Html.Partial("_Notifications")
+@Html.Action("EuCookieLaw", "Common")
+     <header class="clearfix">
+      <div class="wrapper clearfix">
+      @Html.Partial("Header")
+ 
+    @RenderBody()
+
+    </div>
+   @Html.Partial("Footer")
+</body>
+</html>

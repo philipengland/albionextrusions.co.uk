@@ -1,0 +1,31 @@
+﻿@model IList<CategoryModel>
+@using JG1Ltd.Common.Mvc.Helpers
+
+
+@using Nop.Web.Models.Catalog;
+@if (Model.Count > 0)
+{
+     <div id="featured" class="clearfix">
+          <h1><span>Featured Categories</span></h1>
+          <ul id="categories" class="clearfix">
+            @foreach (CategoryModel item in Model)
+            {
+                <li class="drop-shadow curved curved-hz-1">
+                    <h2>@item.Name</h2>
+                    <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" height="238" width="199" /> <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.SeName })" class="btn">See the full range</a>
+                    <p>@if(!string.IsNullOrEmpty(@item.Description))
+                       {
+                           @Html.StripHtml(@item.Description)
+                       }
+                    </p>
+                </li>
+            }
+             </ul>
+    </div>
+}
+
+
+         
+  
+         
+       

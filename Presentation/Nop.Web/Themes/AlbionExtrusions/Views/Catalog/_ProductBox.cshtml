@@ -1,0 +1,39 @@
+﻿@model ProductOverviewModel
+@using Nop.Web.Models.Catalog;
+@{
+    //prepare "Add to cart" AJAX link
+    string addtocartlink = "";
+    if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart", new { productId = Model.Id, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+    }
+    else
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart", new { productId = Model.Id });
+    }    
+}
+<div class="individual-item">
+      <div class="product-image clearfix"> <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" height="80" width="80" />
+        <p><span>All dimensions are external</span></p>
+      </div>
+      <ul class="clearfix">
+        <li>
+          <h2>@Model.Name</h2>
+          <p class="price">@Model.ProductPrice.Price</p>
+          <p>@Html.Raw(Model.ShortDescription)</p>
+            <form action="" class="add-to-basket">
+              <fieldset>
+                <ol>
+                  <li>
+                    <label>Quantity:</label>
+                    <input type="text" placeholder="1">
+                  </li>
+                  <li>
+                  <input type="button" value="@(Model.ProductPrice.AvailableForPreOrder ? T("ShoppingCart.PreOrder") : T("ShoppingCart.AddToCart"))" name="add" class="btn-alt" value="Add to basket" onclick="AjaxCart.addproducttocart('@addtocartlink');return false;" />
+                  </li>
+                </ol>
+              </fieldset>
+            </form>
+        </li>
+      </ul>
+      </div>
