@@ -8,7 +8,7 @@
     var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
     if (canonicalUrlsEnabled)
     {
-        var categoryUrl = Url.RouteUrl("Category", new { categoryId = Model.Id, SeName = Model.SeName }, this.Request.Url.Scheme);
+        var categoryUrl = Url.RouteUrl("CategoryWithPagination", new { categoryId = Model.Id, SeName = Model.SeName }, this.Request.Url.Scheme);
         Html.AddCanonicalUrlParts(categoryUrl);
     }
 }
@@ -63,11 +63,11 @@
                     {
                         @*uncomment to disable clickable link
                         <strong>@cat.Name</strong>*@
-                        <strong><a href="@Url.RouteUrl("Category", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></strong>
+                        <strong><a href="@Url.RouteUrl("CategoryWithPagination", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></strong>
                     }
                     else
                     {
-                        <a href="@Url.RouteUrl("Category", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a>
+                        <a href="@Url.RouteUrl("CategoryWithPagination", new { categoryId = cat.Id, SeName = cat.SeName })" title="@cat.Name">@cat.Name</a>
                         <span class="delimiter">/</span>
                     }
                 </li>
@@ -82,43 +82,33 @@
  <div id="content" class="clearfix">
   <section id="primary-content" class="clearfix" role="main">
       <header class="clearfix">
-                <h1><span>@Model.Name</span></h1>
-              </header>
-   
-        @Html.Widget("categorydetails_top")
+            <h1><span>@Model.Name</span></h1>
+      </header>
+
         @*description*@
         @if (!String.IsNullOrWhiteSpace(Model.Description))
         {
               <p class="description">@Html.Raw(Html.StripPTags(Model.Description))</p>      
         }
         
-          <ul class="pagination clearfix">
-            @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
-          </ul>
 
-         
-        @Html.Widget("categorydetails_after_featured_products")
-        @*sorting*@
-        
-            <div class="product-sorting">
-                <span>@T("Categories.OrderBy")</span>
-                @Html.DropDownList("products-orderby", Model.PagingFilteringContext.AvailableSortOptions, new { onchange = "setLocation(this.value);" })
-            </div>
-        
-        @*page size*@
-        
-            <div class="product-page-size">
-                <span>@T("Categories.PageSize")</span> <span>@Html.DropDownList("products-pagesize", Model.PagingFilteringContext.PageSizeOptions, new { onchange = "setLocation(this.value);" })</span>
-                <span>@T("Categories.PageSize.PerPage")</span>
-            </div>
-        
-        <div class="clear">
-        </div>
-   
-        
+      <div class="controls clearfix drop-shadow curved curved-hz-1">
+      <form>
+          <ol>
+            <li>
+              <label>Display:</label>
+              @Html.DropDownList("products-orderby", Model.PagingFilteringContext.AvailableSortOptions, new { onchange = "setLocation(this.value);", id = "sort" })            
+              <label>per page</label>
+            </li>
+          </ol>
+          </form>
+        <ul class="pagination clearfix">
+          @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+        </ul>
+      </div>
      
 
-        @Html.Widget("categorydetails_before_subcategories")
+
         @*subcategories*@
         @if (Model.SubCategories.Count > 0)
         {
@@ -126,10 +116,14 @@
                 @foreach (CategoryModel.SubCategoryModel item in Model.SubCategories)
                 {
                      <li>
-                        <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title" class="no-bg"><img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" height="80" width="80" /></a>
+                        <a href="@Url.RouteUrl("CategoryWithPagination", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title" class="no-bg"><img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" height="80" width="80" /></a>
                         <h2>@item.Name</h2>
-                        <p>@item. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. INSERT DESCRIPTION HERE! This needs to be quite long or we break the design. </p>
-                        <a href="@Url.RouteUrl("Category", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title">View product range</a>
+                        <p>@if (!string.IsNullOrEmpty(item.SubCategoryDescription))
+                           {
+                                @Html.Raw(Html.StripPTags(item.SubCategoryDescription))
+                           }
+                       </p>
+                        <a href="@Url.RouteUrl("CategoryWithPagination", new { categoryId = item.Id, SeName = item.SeName })" title="@item.PictureModel.Title">View product range</a>
                      </li> 
                 }
             </ul>
@@ -139,18 +133,27 @@
         @*product list*@
         @if (Model.Products.Count > 0)
         {
-                foreach (var product in Model.Products)
-                {
+            foreach (var product in Model.Products)
+            {
                     @Html.Partial("_ProductBox", product)
-                }
+            }
         }
         <div class="clear">
         </div>
-          <ul class="pagination clearfix">
-            @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
-          </ul>
-
-        @Html.Widget("categorydetails_bottom")
+          <div class="controls clearfix drop-shadow curved curved-hz-1">
+          <form>
+              <ol>
+                <li>
+                  <label>Display:</label>
+                  @Html.DropDownList("products-orderby", Model.PagingFilteringContext.AvailableSortOptions, new { onchange = "setLocation(this.value);", id = "sort" })            
+                  <label>per page</label>
+                </li>
+              </ol>
+              </form>
+            <ul class="pagination clearfix">
+              @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+            </ul>
+          </div>
         
 </section>
      

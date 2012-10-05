@@ -152,9 +152,9 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BackwardCompatibility1XController.cs" />
-    <Compile Include="Controllers\ExtenderControllers\CatalogController.cs" />
-    <Compile Include="Controllers\ExtenderControllers\CheckoutController.cs" />
-    <Compile Include="Controllers\ExtenderControllers\CommonController.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Controllers\CatalogController.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Controllers\CheckoutController.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Controllers\CommonController.cs" />
     <Compile Include="Controllers\ReturnRequestController.cs" />
     <Compile Include="Controllers\KeepAliveController.cs" />
     <Compile Include="Controllers\ExternalAuthenticationController.cs" />
@@ -311,7 +311,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificProductModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificModel.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SubCategoryModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\CheckOutModel.cs" />
+    <Compile Include="Themes\AlbionExtrusions\RouteProvider.cs" />
     <Compile Include="Validators\Blogs\BlogPostValidator.cs" />
     <Compile Include="Validators\Boards\EditForumPostValidator.cs" />
     <Compile Include="Validators\Boards\EditForumTopicValidator.cs" />
@@ -1656,6 +1658,7 @@
     <Content Include="Views\Shared\_Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\ExtenderControllers\" />
     <Folder Include="Plugins\bin\" />
     <Folder Include="Themes\AlbionExtrusions\Content\docs\pdf\" />
     <Folder Include="Themes\AlbionExtrusions\Content\docs\word\" />
@@ -1895,7 +1898,7 @@
     <Content Include="Themes\AlbionExtrusions\Views\Shared\Includes.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\News\NewsItem.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Common\Contact.cshtml" />
-    <Content Include="Themes\AlbionExtrusions\Views\Catalog\Categories.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Catalog\CategoryTopLevel.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Shared\Header.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Shared\FooterNavigation.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Topic\TopicBlock.cshtml" />
