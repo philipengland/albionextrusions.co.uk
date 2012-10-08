@@ -21,10 +21,11 @@ footer {margin:15px 0 0 0}
 ul#news li { width:45%;}
 h1 span {padding-right:15px !important}
 ul#generic-list li {padding-bottom:10px}
-#your-basket input.text { width:30px; height:33px; line-height:30px}
-#your-basket table th:nth-of-type(1) { width:50%}
-.btn-alt.basket {height:33px !important; top:0px !important}
-.btn-alt.checkout {height:33px !important}
+#your-basket input.text { width:24px; height:33px; line-height:30px}
+.btn-alt.basket {height:33px; position:relative; top:-1px !important; margin:0 30px 0 0}
+.btn-alt.checkout {height:33px}
+#your-basket table td p {width:400px}
+
 /* -----------------------------------------------
 3. IE7 GLOBAL ELEMENTS AND CONTROLS
 ----------------------------------------------- */

@@ -9,14 +9,11 @@ Created by JG1 Limited
 1. IE8 GENERIC STYLES/FIXES
 ----------------------------------------------- */
 
-#container input[type='submit'], #container input[type='button']{ padding: 0 }
-a abbr, a acronym { text-decoration: underline }
-.clearfix { display: inline-block }
-
 /* -----------------------------------------------
 2. IE8 LAYOUT
 ----------------------------------------------- */
 
+#your-basket input.text { width:24px; height:33px; line-height:30px}
 
 /* -----------------------------------------------
 3. IE8 GLOBAL ELEMENTS AND CONTROLS

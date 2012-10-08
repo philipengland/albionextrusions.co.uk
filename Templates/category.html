@@ -53,13 +53,29 @@
         <h1><span>Functional Extrusions</span></h1>
       </header>
       <p class="description">A paragraph describing the current category. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-      <ul class="pagination clearfix">
-        <li><span class="disabled">&larr; Previous</span></li>
-        <li><a class="current" href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">Next &rarr;</a></li>
-      </ul>
+      <div class="controls clearfix drop-shadow curved curved-hz-1">
+        <form>
+          <ol>
+            <li>
+              <label>Display:</label>
+              <select id="sort">
+                <option value="low-high">2</option>
+                <option value="high-low">4</option>
+                <option value="a-z">8</option>
+                <option value="z-a">12</option>
+              </select>              
+              <label>per page</label>
+            </li>
+          </ol>
+        </form>
+        <ul class="pagination clearfix">
+          <li><span class="disabled">&larr; Previous</span></li>
+          <li><a class="current" href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">Next &rarr;</a></li>
+        </ul>
+      </div>
       <ul id="generic-list" class="clearfix">
         <li><a href="product.html" class="no-bg"><img src="_includes/images/products/placeholder.jpg" alt=""></a>
           <h2>Product title</h2>
@@ -67,7 +83,7 @@
           <a href="product.html">View product range</a> </li>
         <li> <a href="product.html" class="no-bg"><img src="_includes/images/products/placeholder.jpg" alt=""></a>
           <h2>Product title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+          <p>Lorem ipsum dolor sit amet</p>
           <a href="product.html">View product range</a> </li>
         <li> <a href="product.html" class="no-bg"><img src="_includes/images/products/placeholder.jpg" alt=""></a>
           <h2>Product title</h2>
@@ -90,46 +106,59 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
           <a href="product.html">View product range</a> </li>
       </ul>
-      <ul class="pagination clearfix">
-        <li><span class="disabled">&larr; Previous</span></li>
-        <li><a class="current" href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">Next &rarr;</a></li>
-      </ul>
+      <div class="controls clearfix drop-shadow curved curved-hz-1">
+        <form>
+          <ol>
+            <li>
+              <label>Sort by:</label>
+              <select id="sort">
+                <option value="low-high">Price low to high</option>
+                <option value="high-low">Price high to low</option>
+                <option value="a-z">A to Z</option>
+                <option value="z-a">Z to A</option>
+              </select>
+            </li>
+          </ol>
+        </form>
+        <ul class="pagination clearfix">
+          <li><span class="disabled">&larr; Previous</span></li>
+          <li><a class="current" href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">Next &rarr;</a></li>
+        </ul>
+      </div>
     </section>
-       <aside id="quick-basket" class="clearfix">
-          <header class="clearfix">
-            <h1>Your Basket</h1>
-          </header>
-          <p><a href="basket.html">2 items</a><span class="total">£17.90</span></p>
-          <a href="basket.html" class="btn-alt center">Checkout now</a>
-      </aside>
-      <aside id="product-navigation" class="clearfix">
-        <h1>Our Products</h1>
-        <nav id="secondary-navigation" role="navigation">
-          <ul>
-            <li><a href="category.html">Functional extrusions</a></li>
-            <li><a href="category.html">Kitchen doors</a></li>
-            <li><a href="category.html">Bedroom doors</a></li>
-            <li><a href="category.html">Door accessories</a></li>
-            <li><a href="category.html">Vinyl Door colours</a></li>
-            <li><a href="category.html">MDF wrapped profiles</a></li>
-            <li><a href="category.html">Decorative trims</a></li>
-            <li><a href="category.html">Handles & knobs</a></li>
-            <li><a href="category.html">Hinges</a></li>
-            <li><a href="category.html">Drawer runners</a></li>
-            <li><a href="category.html">Accessories</a></li>
-            <li><a href="category.html">Worktops</a></li>
-          </ul>
-        </nav>
-        <dl>
-          <dd> <img src="_includes/images/global/trade-price.png" alt="Download Trade Price List" /><a href="#" class="btn">Download</a></dd>
-          <dd> <img src="_includes/images/global/free-delivery.png" alt="Free delivery on orders over £150!" /> </dd>
-          <dd> <img src="_includes/images/global/sage.png" alt="Shop safe with Sage Pay" /> </dd>
-        </dl>
-      </aside>
-
+    <aside id="quick-basket" class="clearfix">
+      <header class="clearfix">
+        <h1>Your Basket</h1>
+      </header>
+      <p><a href="basket.html">2 items</a><span class="total">£17.90</span></p>
+      <a href="basket.html" class="btn-alt center">Checkout now</a> </aside>
+    <aside id="product-navigation" class="clearfix">
+      <h1>Our Products</h1>
+      <nav id="secondary-navigation" role="navigation">
+        <ul>
+          <li><a href="category.html">Functional extrusions</a></li>
+          <li><a href="category.html">Kitchen doors</a></li>
+          <li><a href="category.html">Bedroom doors</a></li>
+          <li><a href="category.html">Door accessories</a></li>
+          <li><a href="category.html">Vinyl Door colours</a></li>
+          <li><a href="category.html">MDF wrapped profiles</a></li>
+          <li><a href="category.html">Decorative trims</a></li>
+          <li><a href="category.html">Handles & knobs</a></li>
+          <li><a href="category.html">Hinges</a></li>
+          <li><a href="category.html">Drawer runners</a></li>
+          <li><a href="category.html">Accessories</a></li>
+          <li><a href="category.html">Worktops</a></li>
+        </ul>
+      </nav>
+      <dl>
+        <dd> <img src="_includes/images/global/trade-price.png" alt="Download Trade Price List" /><a href="#" class="btn">Download</a></dd>
+        <dd> <img src="_includes/images/global/free-delivery.png" alt="Free delivery on orders over £150!" /> </dd>
+        <dd> <img src="_includes/images/global/sage.png" alt="Shop safe with Sage Pay" /> </dd>
+      </dl>
+    </aside>
   </div>
 </div>
 <footer class="clearfix">

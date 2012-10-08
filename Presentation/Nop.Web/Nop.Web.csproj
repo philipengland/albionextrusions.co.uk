@@ -309,6 +309,7 @@
     <Compile Include="Models\ShoppingCart\ShoppingCartModel.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Controllers\TopicController.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificProductModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SubCategoryModel.cs" />
@@ -1911,6 +1912,7 @@
     <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcBillingAddress1.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcConfirmOrder1.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcPaymentInfo1.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Topic\TopicText.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

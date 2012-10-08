@@ -1,0 +1,32 @@
+﻿@model LoginModel
+@using Nop.Web.Models.Customer;
+@{
+    Layout = "~/Views/Shared/_SubPageLayout.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Login").Text);
+}
+
+<div id="content" class="clearfix">
+      <section id="primary-content" class="clearfix" role="main">
+        <header>
+          <h1><span>Login</span></h1>
+        </header>
+        <div class="contact-form">
+             @using (Html.BeginForm())
+             {
+                 @Html.ValidationSummary(true, T("Account.Login.Unsuccessful").Text)
+                <fieldset>
+                    <ol>
+                        <li><label for="email-address">Email address: </label>@Html.TextBoxFor(model => model.Email, new { @class = "text", @name = "email-address", @type = "email" })</li>@Html.ValidationMessageFor(model => model.Email)
+                        <li><label for="password">Password: </label>@Html.TextBoxFor(model => model.Password, new { @class = "text", @name = "password", @type = "password" })</li>@Html.ValidationMessageFor(model => model.Password)
+                       @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)   
+                        @Html.RouteLink(T("Account.Login.ForgotPassword").Text, "PasswordRecovery")          
+                        <li><input class="btn-alt" type="submit" value="@T("Account.Login.LoginButton")" /></li>
+                    </ol>
+                </fieldset>
+             }
+         </div>
+      </section>
+    </div>
