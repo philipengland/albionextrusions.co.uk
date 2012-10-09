@@ -5,11 +5,11 @@
     string addtocartlink = "";
     if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
     {
-        addtocartlink = Url.RouteUrl("AddProductToCart", new { productId = Model.Id, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+        addtocartlink = Url.RouteUrl("AddAlbionProductToCart", new { productId = Model.Id, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
     }
     else
     {
-        addtocartlink = Url.RouteUrl("AddProductToCart", new { productId = Model.Id });
+        addtocartlink = Url.RouteUrl("AddAlbionProductToCart", new { productId = Model.Id });
     }    
 }
 <div class="individual-item">
@@ -36,4 +36,4 @@
             </form>
         </li>
       </ul>
-      </div>
+</div>

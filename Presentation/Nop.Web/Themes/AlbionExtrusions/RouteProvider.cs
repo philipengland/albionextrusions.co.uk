@@ -18,6 +18,12 @@ namespace Nop.Web.CustomRoutes
                "categories",
                new { controller = "Catalog", action = "CategoryTopLevel" },
                new[] { "Nop.Web.Controllers" });
+
+            routes.MapRoute("AddAlbionProductToCart",
+                "addalbionproducttocart/{productId}",
+                new { controller = "ShoppingCart", action = "AddAlbionProductToCart" },
+                new { productId = @"\d+" },
+                new[] { "Nop.Web.Controllers" });
         }
         public int Priority
         {
