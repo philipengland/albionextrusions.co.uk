@@ -90,7 +90,7 @@ namespace Nop.Plugin.Payments.SagePayServer.Controllers
 
             model.PartnerID = _sagePayServerPaymentSettings.PartnerID;
             model.TransactType = _sagePayServerPaymentSettings.TransactType;
-           // model.VendorDescription = _sagePayServerPaymentSettings.VendorDescription;
+            model.VendorDescription = _sagePayServerPaymentSettings.VendorDescription;
             model.VendorName = _sagePayServerPaymentSettings.VendorName;
             model.NotificationFullyQualifiedDomainName = _sagePayServerPaymentSettings.NotificationFullyQualifiedDomainName;
             model.ReturnFullyQualifiedDomainName = _sagePayServerPaymentSettings.ReturnFullyQualifiedDomainName;
@@ -121,7 +121,7 @@ namespace Nop.Plugin.Payments.SagePayServer.Controllers
             _sagePayServerPaymentSettings.ConnectTo = model.ConnectTo;
             _sagePayServerPaymentSettings.PartnerID = model.PartnerID;
             _sagePayServerPaymentSettings.TransactType = model.TransactType;
-           // _sagePayServerPaymentSettings.VendorDescription = model.VendorDescription;
+            _sagePayServerPaymentSettings.VendorDescription = model.VendorDescription;
             _sagePayServerPaymentSettings.VendorName = model.VendorName;
             _sagePayServerPaymentSettings.NotificationFullyQualifiedDomainName = model.NotificationFullyQualifiedDomainName;
             _sagePayServerPaymentSettings.ReturnFullyQualifiedDomainName = model.ReturnFullyQualifiedDomainName;
@@ -185,7 +185,7 @@ namespace Nop.Plugin.Payments.SagePayServer.Controllers
             else
                 data.Add("Currency", _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode);                        
 
-        //    data.Add("Description", _sagePayServerPaymentSettings.VendorDescription);
+            data.Add("Description", "DescriptionText");
 
             // The Notification URL is the page to which Server calls back when a transaction completes
 

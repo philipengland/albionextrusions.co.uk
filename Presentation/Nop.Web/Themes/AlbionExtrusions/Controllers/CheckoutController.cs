@@ -33,7 +33,7 @@ namespace Nop.Web.Controllers
 {
     public partial class CheckoutController : BaseNopController
     {
-        public ActionResult CompleteCheckout(CheckOutModel model)
+        public ActionResult CompleteCheckout(OnePageCheckoutModel model)
         {
             //STEP ONE: ADDRESSES
             //validation

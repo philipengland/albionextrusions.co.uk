@@ -37,6 +37,7 @@ namespace Nop.Web.Controllers
 {
     public partial class CatalogController : BaseNopController
     {
+
         [ChildActionOnly]
         public ActionResult HomePageSlides()
         {

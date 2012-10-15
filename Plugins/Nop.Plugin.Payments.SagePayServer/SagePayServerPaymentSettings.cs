@@ -26,6 +26,8 @@ namespace Nop.Plugin.Payments.SagePayServer
 
         public string Profile { get; set; }
 
+        public string VendorDescription { get; set; }
+
         public class ConnectToValues
         {
             public const string SIMULATOR = "SIMULATOR";

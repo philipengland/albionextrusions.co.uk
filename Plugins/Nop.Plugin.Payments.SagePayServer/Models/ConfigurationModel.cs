@@ -42,6 +42,9 @@ namespace Nop.Plugin.Payments.SagePayServer.Models
         [DisplayName("Profile")]
         public string Profile { get; set; }
 
+        [DisplayName("VendorDescription")]
+        public string VendorDescription { get; set; }
+
         public IList<SelectListItem> ProfileList { get; set; }
     }
 }

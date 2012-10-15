@@ -311,11 +311,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Themes\AlbionExtrusions\Controllers\ShoppingCartController.cs" />
     <Compile Include="Themes\AlbionExtrusions\Controllers\TopicController.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Extensions\PagerHtmlExtension.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificProductModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SomethingSpecificModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\Models\Catalog\SubCategoryModel.cs" />
-    <Compile Include="Themes\AlbionExtrusions\Models\CheckOutModel.cs" />
+    <Compile Include="Themes\AlbionExtrusions\Models\Checkout\OnePageCheckoutModel.cs" />
     <Compile Include="Themes\AlbionExtrusions\RouteProvider.cs" />
+    <Compile Include="Themes\AlbionExtrusions\UI\Pager.cs" />
     <Compile Include="Validators\Blogs\BlogPostValidator.cs" />
     <Compile Include="Validators\Boards\EditForumPostValidator.cs" />
     <Compile Include="Validators\Boards\EditForumTopicValidator.cs" />
@@ -1660,7 +1662,6 @@
     <Content Include="Views\Shared\_Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\ExtenderControllers\" />
     <Folder Include="Plugins\bin\" />
     <Folder Include="Themes\AlbionExtrusions\Content\docs\pdf\" />
     <Folder Include="Themes\AlbionExtrusions\Content\docs\word\" />
@@ -1895,7 +1896,7 @@
     <Content Include="Themes\AlbionExtrusions\Views\ShoppingCart\OrderSummary.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\ShoppingCart\OrderTotals.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\ShoppingCart\Cart.cshtml" />
-    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OnePageCheckout1.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OnePageCheckout.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Shared\Footer.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Shared\Includes.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\News\NewsItem.cshtml" />
@@ -1910,9 +1911,9 @@
     <Content Include="Themes\AlbionExtrusions\Views\Catalog\Search.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Catalog\HomePageSlides.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Catalog\_ProductBox.cshtml" />
-    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcBillingAddress1.cshtml" />
-    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcConfirmOrder1.cshtml" />
-    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcPaymentInfo1.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcBillingAddress.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcConfirmOrder.cshtml" />
+    <Content Include="Themes\AlbionExtrusions\Views\Checkout\OpcPaymentInfo.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Topic\TopicText.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Customer\Login.cshtml" />
     <Content Include="Themes\AlbionExtrusions\Views\Catalog\ProductTemplate.SingleVariant.cshtml" />

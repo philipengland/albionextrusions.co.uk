@@ -103,7 +103,7 @@
           </ol>
           </form>
         <ul class="pagination clearfix">
-          @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+          @Html.AlbionPager(Model.PagingFilteringContext).QueryParam("pagenumber").ToString()
         </ul>
       </div>
      
@@ -151,7 +151,7 @@
               </ol>
               </form>
             <ul class="pagination clearfix">
-              @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+              @Html.AlbionPager(Model.PagingFilteringContext).QueryParam("pagenumber")
             </ul>
           </div>
         
